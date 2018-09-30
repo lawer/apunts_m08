@@ -141,14 +141,14 @@ El primer pas abans de poder assignar lògica als botons de la nostra interfíci
 ** Passem a la pantalla de codi principal.(`app/java/MainActivityFragment.java`).
 ** Accedim al objecte que fa referència al fragment (`view`) ja que aquest conté el métode findViewById. Guardarem una referència a aquest objecte
 *** Substituirem el codi
-+
+
 [source,java]
 ----
 return inflater.inflate(R.layout.fragment_main, container, false)
 ----
-+
+
 per
-+
+
 [source,java]
 ----
 View view = inflater.inflate(R.layout.fragment_main, container, false);
