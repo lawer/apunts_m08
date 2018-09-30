@@ -137,10 +137,10 @@ image:textviews.png[]
 
 El primer pas abans de poder assignar lògica als botons de la nostra interfície és el d'utilitzar findViewById per referenciar-los.
 
-* Procés:
-** Passem a la pantalla de codi principal.(`app/java/MainActivityFragment.java`).
-** Accedim al objecte que fa referència al fragment (`view`) ja que aquest conté el métode findViewById. Guardarem una referència a aquest objecte
-*** Substituirem el codi
+El procés serà el següent:
+* Passem a la pantalla de codi principal.(`app/java/MainActivityFragment.java`).
+* Accedim al objecte que fa referència al fragment (`view`) ja que aquest conté el métode findViewById. Guardarem una referència a aquest objecte
+** Substituirem el codi
 +
 [source,java]
 ----
@@ -155,14 +155,14 @@ View view = inflater.inflate(R.layout.fragment_main, container, false);
 return view;
 ----
 
-** Fem totes les crides a findViewById
-*** La sintaxi básica és
+* Fem totes les crides a findViewById
+** La sintaxi básica és
 +
 [source,java]
 ----
 TipusComponent nom = view.findViewById(R.id.idComponent)
 ----
-*** Resultat:
+** Resultat:
 +
 [source,java]
 ----
