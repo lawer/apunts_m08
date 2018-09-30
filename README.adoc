@@ -25,7 +25,7 @@
 :adp: AsciiDoc Python
 :adr: Asciidoctor
 :imagesdir: assets/images
-:source-highlighter: highlightjs
+:source-highlighter: prettify
 
 = Apunts M08
 
@@ -141,16 +141,45 @@ El primer pas abans de poder assignar lògica als botons de la nostra interfíci
 ** Passem a la pantalla de codi principal.(`app/java/MainActivityFragment.java`).
 ** Accedim al objecte que fa referència al fragment (`view`) ja que aquest conté el métode findViewById. Guardarem una referència a aquest objecte
 *** Substituirem el codi
-
++
 [source,java]
 ----
 return inflater.inflate(R.layout.fragment_main, container, false)
 ----
-
++
 per
-
++
 [source,java]
 ----
 View view = inflater.inflate(R.layout.fragment_main, container, false);
+return view;
+----
+
+** Fem totes les crides a findViewById
+*** La sintaxi básica és
++
+[source,java]
+----
+TipusComponent nom = view.findViewById(R.id.idComponent)
+----
+*** Resultat:
++
+[source,java]
+----
+View view = inflater.inflate(R.layout.fragment_main, container, false);
+
+ImageButton lifetwotoone = view.findViewById(R.id.lifetwotoone);
+ImageButton lifeonetotwo = view.findViewById(R.id.lifeonetotwo);
+Button p1poisonmore = view.findViewById(R.id.p1poisonmore);
+Button p1poisonless = view.findViewById(R.id.p1poisonless);
+Button p2poisonmore = view.findViewById(R.id.p2poisonmore);
+Button p2poisonless = view.findViewById(R.id.p2poisonless);
+ImageButton p1lifemore = view.findViewById(R.id.p1lifemore);
+ImageButton p2lifemore = view.findViewById(R.id.p2lifemore);
+ImageButton p2lifeless = view.findViewById(R.id.p2lifeless);
+ImageButton p1lifeless = view.findViewById(R.id.p1lifeless);
+TextView counter1 = view.findViewById(R.id.textView5);
+TextView counter2 = view.findViewById(R.id.textView4);
+
 return view;
 ----
