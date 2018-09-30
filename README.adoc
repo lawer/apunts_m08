@@ -33,7 +33,7 @@
 
 L'objectiu d'aquestos apunts es guiar-vos en la creació d'una serie d'aplicacions de dificultat creixent.
 
-Mitjançant la creació d'aquestes apps s'assoliran els conceptes i tècniques necessaris per a
+Si seguiu el passos i completeu els exercicis adquirireu els conceptes i tècniques necessaris per a poder realitzar les vostres propies aplicacions per al SO Android.
 
 == Contador de vides
 
@@ -131,3 +131,11 @@ image:botons_vida.png[]
 ** Resultat:
 +
 image:textviews.png[]
+
+* Fixar IDs
+** Per a poder referenciar els botons i `TextViews` des de el codi hem de donar un ID a cadascun d'ells.
+
+=== `findViewByIds`
+
+El primer pas abans de poder assignar lògica als botons de la nostra interfície és el d'utilitzar findViewById per referenciar-los.
+
