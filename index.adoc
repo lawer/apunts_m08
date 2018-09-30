@@ -1,0 +1,112 @@
+:stylesheet: rocket-panda.css
+:doctype: book
+:page-layout!:
+:toc: left
+:toclevels: 2
+:sectanchors:
+:sectlinks:
+:sectnums:
+:icons: font
+:source-language: asciidoc
+:experimental:
+:stem:
+:idprefix:
+:idseparator: -
+:ast: &ast;
+:dagger: pass:normal[^&dagger;^]
+:endash: &#8211;
+:y: icon:check[role="green"]
+:n: icon:times[role="red"]
+:c: icon:file-text-o[role="blue"]
+:table-caption!:
+:example-caption!:
+:figure-caption!:
+:includedir: _includes
+:underscore: _
+:adp: AsciiDoc Python
+:adr: Asciidoctor
+
+= Apunts M08
+
+== Introducció
+
+L'objectiu d'aquestos apunts es guiar-vos en la creació d'una serie d'aplicacions de dificultat creixent.
+
+Durant la creació d'aquestes apps
+
+== Contador de vides
+
+Crear una aplicació que ens permeta portar el compte de vides i verins que tinga cada jugador en una partida de Magic.
+
+S'han de mantindre els contadors si es gira la pantalla.
+
+S'ha de poder ressetejar els contadors en una opció de Menú.
+
+=== Creació del projecte
+
+* Creem un nou projecte
++
+image:nou_projecte.png[]
++
+No es necessari el suport per a C++.
+
+* Triem el API level
++
+image:api_level.png[Triem el API level]
+
+* Creem una nova activitat de tipus *Basic Activity*
++
+image:nou_activity.png[Nova Activitat]
+
+* Deixem el nom `MainActivity`. Selecccionem l'opció *Use a Fragment*
++
+image:fragment.png[]
+
+* Esperem mentre es crea el nou projecte
+
+=== Disseny de l'aplicació
+
+Hem de dissenyar un `layout` el més paregut possible a la següent imatge: image:interficie_final.png[]
+
+Els pasos son el següents:
+
+* En acabar de crear-se el projecte sens presentarà la interficie de disseny
++
+image:design.png[]
+
+* Hem de verificar que es tracta d'un `ConstraintLayout`
+
+* Agregarem una guia horitzontal que ens servirá per a separar les dues zones de l'aplicació
++
+image::guia_horitzontal.png[]
+
+** Farem click en la part esquerra del document fins que l'icona passe a ser un *%*.
++
+image:esquerra.png[]
++
+image:percent.png[]
+
+** Arrastrem la guia fins a deixar-la al 50%
+
+* Utilitzant l'eina *New Vector Asset* creem imatges per al nostres botons.
++
+image:vector_asset.png[]
+
+** Necessitarem icones per passar vides d'un jugador a un altre (image:fletxa_amunt.png[] i image:fletxa_avall.png[]) i per a guanyar i perdre vides (image:cor_ple.png[] i image:cor_buit.png[]).
+
+* Situem els `ImageButtons` (botons amb imatge) de les fletxes
+** Els utilitzarem per passar vides d'un jugador a un altre
+** Com volem que estiguen en la part central de la pantalla utilitzarem la guia central com a referència en l'eix vertical
+** Per a que ocupen tota la pantalla fixarem els `constraints` esquerre i dret als laterals i fixarem com la opció `Layout Width` el valor `match_parent` (ocupar tot el valor del pare).
+** Per últim, llevarem el marge entre els botons
+** Utilitzant la propietat `tint` pintarem les icones de vermell.
+** El resultat final ha de ser semblant al següent:
++
+image:fletxes.png[]
+
+* Situem els `Buttons` (botons de text)  per als verins
+
+
+
+
+
