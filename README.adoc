@@ -33,7 +33,7 @@
 
 L'objectiu d'aquestos apunts es guiar-vos en la creació d'una serie d'aplicacions de dificultat creixent.
 
-Mijançant la creació d'aquestes apps s'assoliran els conceptes i técniques necessaris per a
+Mitjançant la creació d'aquestes apps s'assoliran els conceptes i tècniques necessaris per a
 
 == Contador de vides
 
@@ -41,7 +41,7 @@ Crear una aplicació que ens permeta portar el compte de vides i verins que ting
 
 S'han de mantindre els contadors si es gira la pantalla.
 
-S'ha de poder ressetejar els contadors en una opció de Menú.
+S'ha de poder resetejar els contadors en una opció de Menú.
 
 === Creació del projecte
 
@@ -59,7 +59,7 @@ image:api_level.png[Triem el API level]
 +
 image:nou_activity.png[Nova Activitat]
 
-* Deixem el nom `MainActivity`. Selecccionem l'opció *Use a Fragment*
+* Deixem el nom `MainActivity`. Seleccionem l'opció *Use a Fragment*
 +
 image:fragment.png[]
 
@@ -69,15 +69,15 @@ image:fragment.png[]
 
 Hem de dissenyar un `layout` el més paregut possible a la següent imatge: image:interficie_final.png[]
 
-Els pasos son el següents:
+Els passos son el següents:
 
-* En acabar de crear-se el projecte sens presentarà la interficie de disseny
+* En acabar de crear-se el projecte sens presentarà la interfície de disseny
 +
 image:design.png[]
 
 * Hem de verificar que es tracta d'un `ConstraintLayout`
 
-* Agregarem una guia horitzontal que ens servirá per a separar les dues zones de l'aplicació
+* Agregarem una guia horitzontal que ens servirà per a separar les dues zones de l'aplicació
 +
 image::guia_horitzontal.png[]
 
@@ -106,7 +106,7 @@ image:vector_asset.png[]
 image:fletxes.png[]
 
 * Situem els `Buttons` (botons de text)  per als verins
-** Quedaràn anclats als cantons (*dalt-esquerra*, *dalt-dreta*, *baix-dreta*, *baix-esquerra* - en el sentit de les agulles del rellotge).
+** Quedaran anclats als cantons (*dalt-esquerra*, *dalt-dreta*, *baix-dreta*, *baix-esquerra* - en el sentit de les agulles del rellotge).
 ** Deixarem el tamany dels botons per defecte
 ** El resultat ha de ser semblant al següent:
 +
@@ -116,9 +116,9 @@ image:verins.png[]
 ** Els utilitzarem per a sumar i restar vides de cada un dels jugadors.
 ** Els pintarem de color vermell.
 ** `Constraints`:
-*** Cada botó anirá fixat al botó de verí més proper i a la guia central en el sentit vertical
-*** En sentit horitzontal agafaràn les referéncies del botó de verí més proper.
-** Els botons tindràn el mateix tamany horitzontal que els botons de verí (opció `wrap_content` per a `Layout Width`).
+*** Cada botó anirà fixat al botó de verí més proper i a la guia central en el sentit vertical
+*** En sentit horitzontal agafaran les referencies del botó de verí més proper.
+** Els botons tindran el mateix tamany horitzontal que els botons de verí (opció `wrap_content` per a `Layout Width`).
 ** Per últim, llevarem el marge entre els botons
 ** Utilitzant la propietat `tint` pintarem les icones de vermell.
 ** Resultat:
@@ -126,7 +126,7 @@ image:verins.png[]
 image:botons_vida.png[]
 
 * `TextViews` pels contadors
-** Estaràn centrats en la meitat superior i inferior del layout, respectivament
+** Estaran centrats en la meitat superior i inferior del layout, respectivament
 ** Tamany (`TextSize`): 30sp
 ** Resultat:
 +
