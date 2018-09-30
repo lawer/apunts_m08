@@ -32,7 +32,7 @@
 
 L'objectiu d'aquestos apunts es guiar-vos en la creació d'una serie d'aplicacions de dificultat creixent.
 
-Durant la creació d'aquestes apps
+Mijançant la creació d'aquestes apps s'assoliran els conceptes i técniques necessaris per a
 
 == Contador de vides
 
@@ -105,8 +105,28 @@ image:vector_asset.png[]
 image:fletxes.png[]
 
 * Situem els `Buttons` (botons de text)  per als verins
+** Quedaràn anclats als cantons (*dalt-esquerra*, *dalt-dreta*, *baix-dreta*, *baix-esquerra* - en el sentit de les agulles del rellotge).
+** Deixarem el tamany dels botons per defecte
+** El resultat ha de ser semblant al següent:
++
+image:verins.png[]
 
+* Situem els `ImageButtons` per a les vides.
+** Els utilitzarem per a sumar i restar vides de cada un dels jugadors.
+** Els pintarem de color vermell.
+** `Constraints`:
+*** Cada botó anirá fixat al botó de verí més proper i a la guia central en el sentit vertical
+*** En sentit horitzontal agafaràn les referéncies del botó de verí més proper.
+** Els botons tindràn el mateix tamany horitzontal que els botons de verí (opció `wrap_content` per a `Layout Width`).
+** Per últim, llevarem el marge entre els botons
+** Utilitzant la propietat `tint` pintarem les icones de vermell.
+** Resultat:
++
+image:botons_vida.png[]
 
-
-
-
+* `TextViews` pels contadors
+** Estaràn centrats en la meitat superior i inferior del layout, respectivament
+** Tamany (`TextSize`): 30sp
+** Resultat:
++
+image:textviews.png[]
