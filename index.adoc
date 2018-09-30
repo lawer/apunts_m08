@@ -1,4 +1,4 @@
-:stylesheet: rocket-panda.css
+:stylesheet: assets/css/rocket-panda.css
 :doctype: book
 :page-layout!:
 :toc: left
@@ -25,6 +25,7 @@
 :underscore: _
 :adp: AsciiDoc Python
 :adr: Asciidoctor
+:imagesdir: assets/images
 
 = Apunts M08
 
