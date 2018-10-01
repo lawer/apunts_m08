@@ -215,9 +215,9 @@ public MainActivityFragment() { //<6>
 
 <1> Definició de la classe
 <2> Vida del *jugador 1*
-<2> Vida del *jugador 2*
-<2> Verins del *jugador 1*
-<2> Verins del *jugador 2*
+<3> Vida del *jugador 2*
+<4> Verins del *jugador 1*
+<5> Verins del *jugador 2*
 <6> Constructor de la classe
 
 ==== Operacions sobre les dades
@@ -261,5 +261,69 @@ public void decPoison2(){
 }
 ----
 
-=== Event Handlers
+=== `Event Handlers`
 
+Per a poder modificar les dades quan es pressionen els botons hem d'utilitzar els gestor d'events (`Events Handlers`) que s'han d'agregar als cotrol que hem obtingut utilitzant findViewById.
+
+La sintaxi general seria:
+
+[source,java]
+----
+control.setEvent((View view)) -> { <1>
+    // Aquí aniria el nostre codi.
+}
+----
+
+<1> Utilitzem una funcionalitat de Java anomenada *funcions lambda*.
++
+Ens permeten substituir una classe amb sols un mètode; reduïnt molt el codi que hem d'escriure.
++
+Més informació: https://www.oracle.com/technetwork/es/articles/java/expresiones-lambda-api-stream-java-2633852-esa.html[Oracle],  https://www.ecodeup.com/entendiendo-paso-a-paso-las-expresiones-lambda-en-java/[ECODEUP]
+<2>
+
+Anirem assignant els diferents events a les crides del nostre model de dades; d'aquesta manera conforme anem fent click s'anirà modificant el valor de les variables.
+
+[source,java]
+----
+lifeonetotwo.setOnClickListener((View view) -> {
+    decLife1();
+    incLife2();
+});
+
+lifetwotoone.setOnClickListener((View view) -> {
+    decLife2();
+    incLife1();
+});
+
+p1poisonmore.setOnClickListener((View view) -> {
+    incPoison1();
+});
+
+p1poisonless.setOnClickListener((View view) -> {
+    decPoison1();
+});
+
+p2poisonmore.setOnClickListener((View view) -> {
+    incPoison2();
+});
+
+p2poisonless.setOnClickListener((View view) -> {
+    decPoison2();
+});
+
+p1lifemore.setOnClickListener((View view) -> {
+    incLife1();
+});
+
+p2lifemore.setOnClickListener((View view) -> {
+    incLife2();
+});
+
+p1lifeless.setOnClickListener((View view) -> {
+    devLife1();
+});
+
+p2lifeless.setOnClickListener((View view) -> {
+    devLife2();
+});
+----
