@@ -438,7 +438,7 @@ D'aquesta forma, cada volta que polsem un botó s'actualizaran els contadors.
 
 ==== Demostració
 
-image::demo.gif[demo, 200, 100]
+image::demo.gif[demo, 200, 340]
 
 === Conservar el estat
 
