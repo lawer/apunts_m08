@@ -28,6 +28,7 @@
 :source-highlighter: prettify
 
 = Apunts M08
+Carles Gonzàlez
 
 == Introducció
 
@@ -393,7 +394,33 @@ p2poisonmore.setOnClickListener(listener);
 p2poisonless.setOnClickListener(listener);
 p1lifemore.setOnClickListener(listener);
 p2lifemore.setOnClickListener(listener);
-p2lifeless.setOnClickListener(listener);
 p1lifeless.setOnClickListener(listener);
+p2lifeless.setOnClickListener(listener);
 ----
 <1> Obtenim l'identificador del botó polsat.
+
+=== Mostrar dades
+
+Per a mostrar les dades haurem de modificar la variable `text` utilitzant el method `setText` del `TextView`.
+
+Crearem un métode que actualitze els `textViews`, per a millorar la reusabilitat.
+
+[source,java]
+----
+private void updateViews() {
+    counter1.setText(String.format("%d/%d", life1, poison1));
+    counter2.setText(String.format("%d/%d", life2, poison2));
+}
+----
+
+Per últim, farem una crida al métode al final del `onClickListener`.
+
+[source,java]
+----
+//...
+p2lifeless.setOnClickListener(listener);
+
+updateViews();
+----
+
+D'aquesta forma, cada volta que polsem un botó s'actualizaran els contadors.
