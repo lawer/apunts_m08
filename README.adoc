@@ -168,8 +168,9 @@ return view;
 +
 [source,java]
 ----
-TipusComponent nom = view.findViewById(R.id.idComponent)
+TipusComponent nom = view.findViewById(R.id.idComponent) <1>
 ----
+<1> `R` es un classe especial autogenerada per l'Android SDK. `R.id` conté tots els `ids` declarats en els `Layouts`.
 
 ** Resultat:
 +
@@ -269,7 +270,7 @@ La sintaxi general seria:
 
 [source,java]
 ----
-control.setEvent((View view)) -> { <1>
+control.setEvent((View view)) -> { <1> <2>
     // Aquí aniria el nostre codi.
 }
 ----
@@ -279,9 +280,13 @@ control.setEvent((View view)) -> { <1>
 Ens permeten substituir una classe amb sols un mètode; reduïnt molt el codi que hem d'escriure.
 +
 Més informació: https://www.oracle.com/technetwork/es/articles/java/expresiones-lambda-api-stream-java-2633852-esa.html[Oracle],  https://www.ecodeup.com/entendiendo-paso-a-paso-las-expresiones-lambda-en-java/[ECODEUP]
-<2>
+
+
+<2> `view` en aquest cas, es referirà al control causant de l'event.
 
 Anirem assignant els diferents events a les crides del nostre model de dades; d'aquesta manera conforme anem fent click s'anirà modificant el valor de les variables.
+
+Tindrem un resultat semblant al següent:
 
 [source,java]
 ----
@@ -327,3 +332,68 @@ p2lifeless.setOnClickListener((View view) -> {
     devLife2();
 });
 ----
+
+==== Refactorització
+
+Com el codi es molt simple podem estalviar la creació de tantes funcions lambda agrupant-les en una sola que tinga un `switch`.
+
+[source,java]
+----
+View.OnClickListener listener = (View view) -> {
+    switch (view.getId()) { // <1>
+        case R.id.lifeonetotwo:
+            decLife1();
+            incLife2();
+            break;
+
+        case R.id.lifetwotoone:
+            decLife2();
+            incLife1();
+            break;
+
+        case R.id.p1lifeless:
+            decLife1();
+            break;
+
+        case R.id.p1lifemore:
+            incLife1();
+            break;
+
+        case R.id.p1poisonless:
+            decPoison1();
+            break;
+
+        case R.id.p1poisonmore:
+            incPoison1();
+            break;
+
+        case R.id.p2lifeless:
+            decLife2();
+            break;
+
+        case R.id.p2lifemore:
+            incLife2();
+            break;
+
+        case R.id.p2poisonless:
+            decPoison2();
+            break;
+
+        case R.id.p2poisonmore:
+            incPoison2();
+            break;
+    }
+};
+
+lifetwotoone.setOnClickListener(listener);
+lifeonetotwo.setOnClickListener(listener);
+p1poisonmore.setOnClickListener(listener);
+p1poisonless.setOnClickListener(listener);
+p2poisonmore.setOnClickListener(listener);
+p2poisonless.setOnClickListener(listener);
+p1lifemore.setOnClickListener(listener);
+p2lifemore.setOnClickListener(listener);
+p2lifeless.setOnClickListener(listener);
+p1lifeless.setOnClickListener(listener);
+----
+<1> Obtenim l'identificador del botó polsat.
