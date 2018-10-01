@@ -2,7 +2,7 @@
 :doctype: book
 :page-layout!:
 :toc: left
-:toclevels: 2
+:toclevels: 3
 :sectanchors:
 :sectlinks:
 :sectnums:
@@ -36,6 +36,8 @@ L'objectiu d'aquestos apunts es guiar-vos en la creació d'una serie d'aplicacio
 Si seguiu el passos i completeu els exercicis adquirireu els conceptes i tècniques necessaris per a poder realitzar les vostres propies aplicacions per al SO Android.
 
 == Contador de vides
+
+=== Objectiu
 
 Crear una aplicació que ens permeta portar el compte de vides i verins que tinga cada jugador en una partida de Magic.
 
@@ -106,6 +108,7 @@ image:fletxes.png[]
 * Situem els `Buttons` (botons de text)  per als verins
 ** Quedaran anclats als cantons (*dalt-esquerra*, *dalt-dreta*, *baix-dreta*, *baix-esquerra* - en el sentit de les agulles del rellotge).
 ** Deixarem el tamany dels botons per defecte
+** Han de tindre color verd.
 ** El resultat ha de ser semblant al següent:
 +
 image:verins.png[]
@@ -138,6 +141,7 @@ image:textviews.png[]
 El primer pas abans de poder assignar lògica als botons de la nostra interfície és el d'utilitzar findViewById per referenciar-los.
 
 El procés serà el següent:
+
 * Passem a la pantalla de codi principal.(`app/java/MainActivityFragment.java`).
 * Accedim al objecte que fa referència al fragment (`view`) ja que aquest conté el métode findViewById. Guardarem una referència a aquest objecte
 ** Substituirem el codi
@@ -152,16 +156,21 @@ per
 [source,java]
 ----
 View view = inflater.inflate(R.layout.fragment_main, container, false);
+
+//Aquí van les crides a findViewById
+
 return view;
 ----
 
 * Fem totes les crides a findViewById
+** Necessitarem accedit a tots el *botons*, *botons amb imatge* i *textos* (`Button`, `ImageButton` i `TextView`);
 ** La sintaxi básica és
 +
 [source,java]
 ----
 TipusComponent nom = view.findViewById(R.id.idComponent)
 ----
+
 ** Resultat:
 +
 [source,java]
@@ -178,8 +187,79 @@ ImageButton p1lifemore = view.findViewById(R.id.p1lifemore);
 ImageButton p2lifemore = view.findViewById(R.id.p2lifemore);
 ImageButton p2lifeless = view.findViewById(R.id.p2lifeless);
 ImageButton p1lifeless = view.findViewById(R.id.p1lifeless);
-TextView counter1 = view.findViewById(R.id.textView5);
-TextView counter2 = view.findViewById(R.id.textView4);
+TextView counter1 = view.findViewById(R.id.counterp1);
+TextView counter2 = view.findViewById(R.id.counterp2);
 
 return view;
 ----
+
+=== Model de dades
+
+==== Estructures de dades
+
+El següent pas serà el de definir com volem que s'emmagatzemen les dades en la nostra aplicació.
+
+Al ser un exemple tan senzill tindrem prou en quatre variables privades situades en el mateix fragment.
+
+[source,java]
+----
+public class MainActivityFragment extends Fragment { //<1>
+
+private int life1 = 20; //<2>
+private int life2 = 20; //<3>
+private int poison1 = 0; //<4>
+private int poison2 = 0; //<5>
+
+public MainActivityFragment() { //<6>
+----
+
+<1> Definició de la classe
+<2> Vida del *jugador 1*
+<2> Vida del *jugador 2*
+<2> Verins del *jugador 1*
+<2> Verins del *jugador 2*
+<6> Constructor de la classe
+
+==== Operacions sobre les dades
+
+També haurem de definir les operacions que es podran realitzar sobre les dades.
+
+Tindrem vuit accions possibles, les referides a incrementar i decrementar les vides i verins de cada jugador..
+
+[source,java]
+----
+public void incLife1(){
+    life1++;
+}
+
+public void incLife2(){
+    life2++;
+}
+
+public void decLife1(){
+    life1--;
+}
+
+public void decLife2(){
+    life2--;
+}
+
+public void incPoison1(){
+    poison1++;
+}
+
+public void incPoison2(){
+    poison2++;
+}
+
+public void decPoison1(){
+    poison1--;
+}
+
+public void decPoison2(){
+    poison2--;
+}
+----
+
+=== Event Handlers
+
