@@ -26,6 +26,7 @@
 :adr: Asciidoctor
 :imagesdir: assets/images
 :source-highlighter: prettify
+:data-uri:
 
 = Apunts M08
 Carles Gonzàlez
@@ -57,14 +58,22 @@ No es necessari el suport per a C++.
 * Triem el API level
 +
 image:api_level.png[Triem el API level]
++
+El API level determina les llibreries que tindrem disponibles i es correspon a les diferents versions d'Android.
++
+Quan major siga aquest valor menys dependrem de la llibreria de compatibilitat i tindrem accés a eines més actualitzades; al mateix temps, però, la nostra aplicació es podrà executar en un nombre més reduït de mòbils.
++
+Nosaltres utilitzarem el nivell *16*.
 
 * Creem una nova activitat de tipus *Basic Activity*
 +
 image:nou_activity.png[Nova Activitat]
 
-* Deixem el nom `MainActivity`. Seleccionem l'opció *Use a Fragment*
+* Deixem el nom `MainActivity`. Seleccionem l'opció *Use a Fragment*.
 +
 image:fragment.png[]
++
+Sempre utilitzarem fragments en les nostres `apps`, ja que ens facilitzarà una posterior adaptació a tabletes.
 
 * Esperem mentre es crea el nou projecte
 
@@ -129,7 +138,7 @@ image:botons_vida.png[]
 
 * `TextViews` pels contadors
 ** Estaran centrats en la meitat superior i inferior del layout, respectivament
-** Tamany (`TextSize`): 30sp
+** Tamany (`TextSize`): *30sp*
 ** Resultat:
 +
 image:textviews.png[]
@@ -162,6 +171,8 @@ View view = inflater.inflate(R.layout.fragment_main, container, false);
 
 return view;
 ----
++
+Aquest codi es troba en el mètode `onCreateView`, el que s'executa al inicialitzar el fragment.
 
 * Fem totes les crides a findViewById
 ** Necessitarem accedit a tots el *botons*, *botons amb imatge* i *textos* (`Button`, `ImageButton` i `TextView`);
@@ -424,3 +435,74 @@ updateViews();
 ----
 
 D'aquesta forma, cada volta que polsem un botó s'actualizaran els contadors.
+
+==== Demostració
+
+image::demo.gif[demo, 200, 100]
+
+=== Conservar el estat
+
+Si, en la aplicació oberta, girem el telèfon podem veure com les dades es perden.
+
+Android, per fer que la pantalla s'adapte a les noves dimensions, ha recreat l'Activity i tornat a executar el métode `onCreateView` tornat a inicialitzar les nostres dades al valor inicial.
+
+Si no volem que passe aquest fenomen hem d'aprofitar les funcionalitats que ens dona Android per aquesta tasca.
+
+==== `onSaveInstanceState``
+
+EL primer pas serà guardar el valor de les nostres dades just abans de que s'esborrin.
+
+Android ens proporciona per aquesta tasca el métode `onSaveInstanceState`, que si l'implementem ens permet posar les dades en un objecte semblant a un `HashMap` anomentat `Bundle` que Android guardarà.
+
+El métode quedarà així:
+
+[source,java]
+----
+@Override
+public void onSaveInstanceState(Bundle outState) {
+    super.onSaveInstanceState(outState);
+
+    outState.putInt("life1", life1); <1>
+    outState.putInt("life2", life2);
+    outState.putInt("poison1", poison1);
+    outState.putInt("poison2", poison2);
+}
+----
+
+<1> Guardem les dades en el `Bundle`.
+
+==== `Bundle savedInstanceState`
+
+Una volta s'han reconstruït l'activitat i el fragment s'han de recuperar les dades anteriors.
+
+Si treballem amb fragments, com és el nostre cas, la forma de fer-ho és en el métode `onCreateView` que té com a paràmetre un objecte de tipus `Bundle` anomenat `savedInstanceState`.
+
+D'aquesta forma, agafarem aquest objecte, extreurem les dades de l'objecte, inicialitzarem les dades en les que provenen del `Bundle` i, per últim, tornarem a actualitzar els contadors.
+
+Exemple:
+
+[source,java]
+----
+TextView counter2 = view.findViewById(R.id.textView4);
+
+<1>
+
+if (savedInstanceState != null) {
+    life1 = savedInstanceState.getInt("life1"); <2>
+    life2 = savedInstanceState.getInt("life2");
+    poison1 = savedInstanceState.getInt("poison1");
+    poison2 = savedInstanceState.getInt("poison2");
+
+    updateViews(); <3>
+}
+
+View.OnClickListener listener = (View view) -> {
+----
+
+<1> Insertem el codi després de fer els `findViewById` i abans de crear els listeners.
+<2> Extraiem les dades
+<3> Actualitzem els contadors
+
+==== Demostració
+
+image::instanceState.gif[]
